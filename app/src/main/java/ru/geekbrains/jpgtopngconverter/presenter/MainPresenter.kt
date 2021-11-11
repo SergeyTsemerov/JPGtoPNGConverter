@@ -13,6 +13,8 @@ import ru.geekbrains.jpgtopngconverter.model.ConverterModel
 import ru.geekbrains.jpgtopngconverter.view.MainView
 import java.lang.Thread.sleep
 
+private const val WAIT_TIME = 2000L
+
 class MainPresenter : MvpPresenter<MainView>() {
 
     private val model = ConverterModel()
@@ -27,7 +29,7 @@ class MainPresenter : MvpPresenter<MainView>() {
         disposable = observable
             .subscribeOn(Schedulers.newThread())
             .map {
-                sleep(2000)
+                sleep(WAIT_TIME)
                 model.getBitmap(it)
             }
             .observeOn(AndroidSchedulers.mainThread())
